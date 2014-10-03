@@ -4,5 +4,4 @@ public interface Rule {
 
 	public StringBuffer execute(StringBuffer elementList);
 
-	
 }
