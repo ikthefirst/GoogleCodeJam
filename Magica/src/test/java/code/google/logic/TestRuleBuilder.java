@@ -3,9 +3,9 @@ package code.google.logic;
 import java.util.Set;
 
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 import code.google.data.InputData;
-import static org.junit.Assert.*;
 
 public class TestRuleBuilder {
 

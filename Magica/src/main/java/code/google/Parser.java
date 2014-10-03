@@ -1,8 +1,5 @@
 package code.google;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import code.google.data.InputData;
 import code.google.skeleton.AbstractParser;
 
@@ -23,7 +20,7 @@ public class Parser extends AbstractParser<InputData> {
 		for (; opposeNum > 0; opposeNum--, i++) {
 			inputData.addOpposeRule(tokens[i]);
 		}
-		int inputLength = Integer.parseInt(tokens[i]);
+		// int inputLength = Integer.parseInt(tokens[i]);
 		i++;
 		inputData.setInput(tokens[i]);
 
