@@ -67,4 +67,20 @@ public class TestOpposeRule {
 				output, result);
 	}
 
+	@Test
+	public void ruleShouldEraseIfThereIsAnElementMatchingTheLastElement() {
+		OpposeRule rule = new OpposeRule();
+		rule.addRuleElement('A');
+		rule.addRuleElement('B');
+
+		String input = "YYYYYAXXXXB";
+		String output = "";
+
+		String result = rule.execute(new StringBuffer(input)).toString();
+
+		assertEquals(
+				"Rule should erase if there is an element, which is the pair of the last element according to the rule.",
+				output, result);
+	}
+
 }
