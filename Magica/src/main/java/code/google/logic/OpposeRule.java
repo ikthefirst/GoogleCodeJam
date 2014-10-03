@@ -19,15 +19,18 @@ public class OpposeRule implements Rule {
 			return elementList;
 		}
 
-		char firstChar = elementList.charAt(0);
 		char lastChar = elementList.charAt(elementList.length() - 1);
-
-		if (firstChar == lastChar && ruleElements.size() > 1) {
+		if (!ruleElements.contains(lastChar)) {
 			return elementList;
 		}
 
-		if (ruleElements.contains(firstChar) && ruleElements.contains(lastChar)) {
-			return new StringBuffer();
+		for (int i = 0; i < elementList.length() - 1; i++) {
+			char ch = elementList.charAt(i);
+			if (ruleElements.contains(ch)) {
+				if (ch != lastChar || ruleElements.size() == 1) {
+					return new StringBuffer();
+				}
+			}
 		}
 
 		return elementList;
