@@ -3,7 +3,6 @@ package code.google;
 import org.junit.Test;
 
 import code.google.data.InputData;
-import code.google.logic.CombineRule;
 import static org.junit.Assert.*;
 
 public class TestParser {

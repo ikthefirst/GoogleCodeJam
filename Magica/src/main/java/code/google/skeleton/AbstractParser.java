@@ -24,7 +24,7 @@ public abstract class AbstractParser<D> {
 				return;
 			}
 			int testcaseNum = Integer.parseInt(line);
-			while (testcaseNum > 0) {
+			while (testcaseNum-- > 0) {
 				line = br.readLine();
 				D data = parseLine(line);
 				inputData.add(data);
