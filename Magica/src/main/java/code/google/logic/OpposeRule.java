@@ -1,5 +1,6 @@
 package code.google.logic;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -9,13 +10,27 @@ import java.util.Set;
  */
 public class OpposeRule implements Rule {
 
-	private Set<Character> ruleElements;
+	private Set<Character> ruleElements = new HashSet<>();
 	private char secondElement;
 
 	@Override
 	public StringBuffer execute(StringBuffer elementList) {
-		// TODO Auto-generated method stub
-		return null;
+		if (elementList.length() < 2) {
+			return elementList;
+		}
+
+		char firstChar = elementList.charAt(0);
+		char lastChar = elementList.charAt(elementList.length() - 1);
+
+		if (firstChar == lastChar && ruleElements.size() > 1) {
+			return elementList;
+		}
+
+		if (ruleElements.contains(firstChar) && ruleElements.contains(lastChar)) {
+			return new StringBuffer();
+		}
+
+		return elementList;
 	}
 
 	public char getSecondElement() {
