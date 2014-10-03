@@ -1,5 +1,6 @@
 package code.google.logic;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -8,17 +9,33 @@ import java.util.Set;
  */
 public class CombineRule implements Rule {
 
-	private Set<Character> ruleElements;
+	private Set<Character> ruleElements = new HashSet<>();
 	private char combinedElement;
 
 	@Override
 	public StringBuffer execute(StringBuffer elementList) {
+		if (elementList.length() < 2) {
+			return elementList;
+		}
+
+		char beforeLastChar = elementList.charAt(elementList.length() - 2);
+		char lastChar = elementList.charAt(elementList.length() - 1);
+
+		if (beforeLastChar == lastChar && ruleElements.size() > 1) {
+			return elementList;
+		}
+
+		if (ruleElements.contains(beforeLastChar)
+				&& ruleElements.contains(lastChar)) {
+			return combine(elementList);
+		}
 
 		return elementList;
-
 	}
 
 	private StringBuffer combine(StringBuffer elementList) {
+		elementList.deleteCharAt(elementList.length() - 1);
+		elementList.setCharAt(elementList.length() - 1, combinedElement);
 		return elementList;
 	}
 
