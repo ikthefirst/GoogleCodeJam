@@ -12,7 +12,7 @@ import java.util.List;
  */
 public abstract class AbstractParser<D> {
 
-	private List<D> inputData = new ArrayList<D>();
+	protected List<D> inputData = new ArrayList<D>();
 
 	public void parseFile(String inputFile) throws IOException {
 
