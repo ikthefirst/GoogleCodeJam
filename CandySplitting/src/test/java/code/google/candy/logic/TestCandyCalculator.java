@@ -71,4 +71,21 @@ public class TestCandyCalculator {
 		assertEquals("SUM[100,8,2] should be 0.", 110, calculator.sum(numbers));
 	}
 
+	public void removeMinShouldRemoveSmallestUmberFromList() {
+		CandyCalculator calculator = new CandyCalculator();
+		List<Integer> numbers = new ArrayList<>();
+		numbers.add(2);
+		numbers.add(3);
+		numbers.add(1);
+		numbers.add(4);
+
+		List<Integer> expected = new ArrayList<>();
+		numbers.add(2);
+		numbers.add(3);
+		numbers.add(4);
+		calculator.removeMin(numbers);
+
+		assertEquals("removeMin() should remove minumum number from list.",
+				expected, numbers);
+	}
 }
