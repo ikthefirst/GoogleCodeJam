@@ -1,17 +1,17 @@
-package code.google;
+package code.google.skeleton;
 
 import java.io.IOException;
+import java.util.List;
 
-import code.google.parser.AbstractParser;
+import code.google.skeleton.AbstractParser;
 
 /**
  * Abstract application class for executing solutions.
  */
-public abstract class AbstractApplication {
+public abstract class AbstractApplication<D> {
 
 	public void execute(String[] args) {
-		AbstractParser parser = createParser();
-		parser.setInputData(getInputData());
+		AbstractParser<D> parser = createParser();
 
 		if (args.length > 0) {
 			try {
@@ -27,12 +27,10 @@ public abstract class AbstractApplication {
 			}
 		}
 
-		this.doStuff();
+		this.doStuff(parser.getInputData());
 	}
 
-	public abstract AbstractParser createParser();
+	public abstract AbstractParser<D> createParser();
 
-	public abstract Object getInputData();
-
-	public abstract void doStuff();
+	public abstract void doStuff(List<D> inputData);
 }
