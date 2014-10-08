@@ -35,7 +35,14 @@ public class ClausePartitioner {
 	 * @return
 	 */
 	public Clause partition(Clause clause, char ch, int pos) {
-		// TODO: add logic
+		String pattern = clause.getPattern();
+		if (pattern.charAt(pos) != '.') {
+			return null;
+		}
+
+		Clause newClause = new Clause();
+		
+		
 
 		return null;
 	}

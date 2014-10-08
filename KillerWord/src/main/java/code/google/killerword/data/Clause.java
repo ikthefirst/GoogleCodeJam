@@ -1,5 +1,6 @@
 package code.google.killerword.data;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Clause {
@@ -30,11 +31,19 @@ public class Clause {
 	}
 
 	public Set<Character> getContainedCharacters() {
-		return containedCharacters;
+		return new HashSet<Character>(containedCharacters);
 	}
 
 	public void setContainedCharacters(Set<Character> containedCharacters) {
 		this.containedCharacters = containedCharacters;
+	}
+
+	public void removeCharacter(char ch) {
+		containedCharacters.remove(ch);
+	}
+
+	public void addCharacter(char ch) {
+		containedCharacters.add(ch);
 	}
 
 	public String getPattern() {
@@ -46,11 +55,19 @@ public class Clause {
 	}
 
 	public Set<String> getWords() {
-		return words;
+		return new HashSet<String>(words);
 	}
 
 	public void setWords(Set<String> words) {
 		this.words = words;
+	}
+
+	public void removeWord(String word) {
+		words.remove(word);
+	}
+
+	public void addWord(String word) {
+		words.add(word);
 	}
 
 	public int getLostPoints() {
