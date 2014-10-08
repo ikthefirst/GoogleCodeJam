@@ -20,8 +20,8 @@ public class TestClausePartitionerWithPosition {
 		words.add("caa");
 		Clause clause = new Clause(pattern, words, 0);
 
-		ClauseCalculator calculator = new ClauseCalculator();
-		calculator.partition(clause, 'a', 0);
+		ClausePartitioner partitioner = new ClausePartitioner();
+		partitioner.partition(clause, 'a', 0);
 
 		assertEquals(
 				"partition() should not modify pattern the passed clause.",
@@ -41,8 +41,8 @@ public class TestClausePartitionerWithPosition {
 		expectedWords.add("baa");
 		expectedWords.add("caa");
 
-		ClauseCalculator calculator = new ClauseCalculator();
-		calculator.partition(clause, 'a', 0);
+		ClausePartitioner partitioner = new ClausePartitioner();
+		partitioner.partition(clause, 'a', 0);
 
 		assertEquals(
 				"partition() should extract matching words from passed clause.",
@@ -63,8 +63,8 @@ public class TestClausePartitionerWithPosition {
 		expectedWords.add("baa");
 		expectedWords.add("caa");
 
-		ClauseCalculator calculator = new ClauseCalculator();
-		calculator.partition(clause, 'x', 0);
+		ClausePartitioner partitioner = new ClausePartitioner();
+		partitioner.partition(clause, 'x', 0);
 
 		assertEquals(
 				"partition() should not extract words from passed clause if there is no match.",
@@ -80,8 +80,8 @@ public class TestClausePartitionerWithPosition {
 		words.add("caa");
 		Clause clause = new Clause(pattern, words, 0);
 
-		ClauseCalculator calculator = new ClauseCalculator();
-		Clause newClause = calculator.partition(clause, 'a', 0);
+		ClausePartitioner partitioner = new ClausePartitioner();
+		Clause newClause = partitioner.partition(clause, 'a', 0);
 
 		assertEquals(
 				"partition() should return clause with pattern appropriate pattern.",
@@ -97,8 +97,8 @@ public class TestClausePartitionerWithPosition {
 		words.add("caa");
 		Clause clause = new Clause(pattern, words, 0);
 
-		ClauseCalculator calculator = new ClauseCalculator();
-		Clause newClause = calculator.partition(clause, 'x', 0);
+		ClausePartitioner partitioner = new ClausePartitioner();
+		Clause newClause = partitioner.partition(clause, 'x', 0);
 
 		assertEquals(
 				"partition() should return null because there is no 'x' in position 0 in any of the words in the clause.",
@@ -114,8 +114,8 @@ public class TestClausePartitionerWithPosition {
 		words.add("caa");
 		Clause clause = new Clause(pattern, words, 23);
 
-		ClauseCalculator calculator = new ClauseCalculator();
-		calculator.partition(clause, 'a', 1);
+		ClausePartitioner partitioner = new ClausePartitioner();
+		partitioner.partition(clause, 'a', 1);
 
 		assertEquals(
 				"partition() should not modify lost points in passed clause.",
@@ -131,8 +131,8 @@ public class TestClausePartitionerWithPosition {
 		words.add("caa");
 		Clause clause = new Clause(pattern, words, 23);
 
-		ClauseCalculator calculator = new ClauseCalculator();
-		Clause newClause = calculator.partition(clause, 'a', 1);
+		ClausePartitioner partitioner = new ClausePartitioner();
+		Clause newClause = partitioner.partition(clause, 'a', 1);
 
 		assertEquals(
 				"partition() should not modify lost points in passed clause.",
@@ -148,8 +148,8 @@ public class TestClausePartitionerWithPosition {
 		words.add("caa");
 		Clause clause = new Clause(pattern, words, 23);
 
-		ClauseCalculator calculator = new ClauseCalculator();
-		calculator.partition(clause, 'a', 3);
+		ClausePartitioner partitioner = new ClausePartitioner();
+		partitioner.partition(clause, 'a', 3);
 
 		assertEquals(
 				"partition() should not modify words in clause if position is out of pattern limit.",
@@ -165,8 +165,8 @@ public class TestClausePartitionerWithPosition {
 		words.add("caa");
 		Clause clause = new Clause(pattern, words, 23);
 
-		ClauseCalculator calculator = new ClauseCalculator();
-		calculator.partition(clause, 'a', 3);
+		ClausePartitioner partitioner = new ClausePartitioner();
+		partitioner.partition(clause, 'a', 3);
 
 		assertEquals(
 				"partition() should not modify pattern in clause if position is out of pattern limit.",
