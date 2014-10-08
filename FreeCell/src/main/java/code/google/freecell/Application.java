@@ -25,21 +25,36 @@ public class Application extends AbstractApplication<InputData> {
 		for (InputData inputData : inputDatas) {
 			testcaseNum++;
 
+			if (!evaluator.evaluateInput(inputData)) {
+				printResult(testcaseNum, false);
+				continue;
+			}
+
 			Stats dailyStats = calculator.calculateStats(inputData
 					.getWinPercentageToday());
+
+			if (!evaluator.evaluateDailyStats(inputData.getMaxGamesToday(),
+					dailyStats)) {
+				printResult(testcaseNum, false);
+				continue;
+			}
+
 			Stats globalStats = calculator.calculateStats(inputData
 					.getWinPercentageTotal());
 
-			boolean result = evaluator.evaluateDailyStats(
-					inputData.getMaxGamesToday(), dailyStats)
-					&& evaluator.evaluateGlobalStats(dailyStats, globalStats);
+			// not needed.
+			// if (!evaluator.evaluateGlobalStats(dailyStats, globalStats)) {
+			// printResult(testcaseNum, false);
+			// continue;
+			// }
 
-			printResult(testcaseNum, result);
+			printResult(testcaseNum, true);
 		}
 	}
 
-	private void printResult(int n, Object result) {
-		System.out.println("Case #" + n + ": " + result);
+	private void printResult(int n, boolean result) {
+		System.out.println("Case #" + n + ": "
+				+ (result ? "Possible" : "Broken"));
 	}
 
 }

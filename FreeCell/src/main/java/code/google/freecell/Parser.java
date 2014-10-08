@@ -10,7 +10,7 @@ public class Parser extends AbstractParser<InputData> {
 		InputData inputData = new InputData();
 
 		String[] tokens = line.split("\\s+");
-		inputData.setMaxGamesToday(Integer.parseInt(tokens[0]));
+		inputData.setMaxGamesToday(Long.parseLong(tokens[0]));
 		inputData.setWinPercentageToday(Integer.parseInt(tokens[1]));
 		inputData.setWinPercentageTotal(Integer.parseInt(tokens[2]));
 

@@ -2,21 +2,21 @@ package code.google.freecell.data;
 
 public class Stats {
 
-	private int numberOfGames;
+	private long numberOfGames;
 	private int numberOfWin;
 	private int numberOfLoss;
 
 	public Stats() {
 	}
 
-	public Stats(int numberOfGames, int numberOfWin, int numberOfLoss) {
+	public Stats(long numberOfGames, int numberOfWin, int numberOfLoss) {
 		super();
 		this.numberOfGames = numberOfGames;
 		this.numberOfWin = numberOfWin;
 		this.numberOfLoss = numberOfLoss;
 	}
 
-	public int getNumberOfGames() {
+	public long getNumberOfGames() {
 		return numberOfGames;
 	}
 
@@ -24,7 +24,7 @@ public class Stats {
 		this.numberOfGames = numberOfGames;
 	}
 
-	public int getNumberOfWin() {
+	public int getNumberOfWins() {
 		return numberOfWin;
 	}
 
@@ -44,7 +44,8 @@ public class Stats {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + numberOfGames;
+		result = prime * result
+				+ (int) (numberOfGames ^ (numberOfGames >>> 32));
 		result = prime * result + numberOfLoss;
 		result = prime * result + numberOfWin;
 		return result;

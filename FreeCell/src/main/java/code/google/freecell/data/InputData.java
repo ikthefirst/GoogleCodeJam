@@ -4,7 +4,7 @@ public class InputData {
 
 	private int winPercentageToday;
 	private int winPercentageTotal;
-	private int maxGamesToday; // max possible games played today
+	private long maxGamesToday; // max possible games played today
 
 	public int getWinPercentageToday() {
 		return winPercentageToday;
@@ -22,11 +22,11 @@ public class InputData {
 		this.winPercentageTotal = winPercentageTotal;
 	}
 
-	public int getMaxGamesToday() {
+	public long getMaxGamesToday() {
 		return maxGamesToday;
 	}
 
-	public void setMaxGamesToday(int maxGamesToday) {
+	public void setMaxGamesToday(long maxGamesToday) {
 		this.maxGamesToday = maxGamesToday;
 	}
 
