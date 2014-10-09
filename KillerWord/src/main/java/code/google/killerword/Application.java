@@ -44,10 +44,12 @@ public class Application extends AbstractApplication<InputData> {
 
 	private void printResult(int n, List<String> result) {
 		System.out.print("Case #" + n + ": ");
-		for (String s : result) {
-			System.out.print(s + " ");
+		for (int i = 0; i < result.size(); i++) {
+			System.out.print(result.get(i));
+			if (i < result.size() - 1) {
+				System.out.print(" ");
+			}
 		}
 		System.out.println();
 	}
-
 }

@@ -5,14 +5,12 @@ import java.util.Set;
 
 public class Clause {
 
-	private Set<Character> containedCharacters;
 	private String pattern;
 	private Set<String> words;
 	private int lostPoints;
 
 	public Clause() {
 		super();
-		containedCharacters = new HashSet<>();
 		words = new HashSet<>();
 	}
 
@@ -23,29 +21,13 @@ public class Clause {
 		this.lostPoints = lostPoints;
 	}
 
-	public Clause(Set<Character> containedCharacters, String pattern,
-			Set<String> words, int lostPoints) {
-		this();
-		this.containedCharacters = containedCharacters;
-		this.pattern = pattern;
-		this.words = words;
-		this.lostPoints = lostPoints;
-	}
-
-	public Set<Character> getContainedCharacters() {
-		return new HashSet<Character>(containedCharacters);
-	}
-
-	public void setContainedCharacters(Set<Character> containedCharacters) {
-		this.containedCharacters = containedCharacters;
-	}
-
-	public void removeCharacter(char ch) {
-		containedCharacters.remove(ch);
-	}
-
-	public void addCharacter(char ch) {
-		containedCharacters.add(ch);
+	public boolean containsCharacter(char ch) {
+		for (String word : words) {
+			if (word.indexOf(ch) >= 0) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public String getPattern() {
@@ -84,10 +66,6 @@ public class Clause {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime
-				* result
-				+ ((containedCharacters == null) ? 0 : containedCharacters
-						.hashCode());
 		result = prime * result + lostPoints;
 		result = prime * result + ((pattern == null) ? 0 : pattern.hashCode());
 		result = prime * result + ((words == null) ? 0 : words.hashCode());
@@ -106,13 +84,6 @@ public class Clause {
 			return false;
 		}
 		Clause other = (Clause) obj;
-		if (containedCharacters == null) {
-			if (other.containedCharacters != null) {
-				return false;
-			}
-		} else if (!containedCharacters.equals(other.containedCharacters)) {
-			return false;
-		}
 		if (lostPoints != other.lostPoints) {
 			return false;
 		}
@@ -135,7 +106,8 @@ public class Clause {
 
 	@Override
 	public String toString() {
-		return "Clause(" + pattern + ", " + words + ", " + lostPoints + ")";
+		return "Clause(" + pattern + ", " + words + ", " + "points="
+				+ lostPoints + ")";
 	}
 
 }

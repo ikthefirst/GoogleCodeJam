@@ -1,11 +1,9 @@
 package code.google.killerword.logic;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -56,13 +54,12 @@ public class ClauseCalculator {
 		for (Entry<Integer, Set<String>> entry : wordsByLength.entrySet()) {
 			int length = entry.getKey();
 			Set<String> words = entry.getValue();
-			Set<Character> chars = buildCharacterSetForWords(words);
 			StringBuilder sb = new StringBuilder();
 			for (int i = 0; i < length; i++) {
 				sb.append(".");
 			}
 
-			clauses.put(length, new Clause(chars, sb.toString(), words, 0));
+			clauses.put(length, new Clause(sb.toString(), words, 0));
 		}
 
 		return clauses;

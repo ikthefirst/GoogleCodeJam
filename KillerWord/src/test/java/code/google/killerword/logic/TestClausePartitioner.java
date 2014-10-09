@@ -45,7 +45,7 @@ public class TestClausePartitioner {
 		Set<Integer> positions = new HashSet<Integer>(
 				Arrays.asList(new Integer[] { 2, 3, 4 }));
 		assertEquals(
-				"ClausePartitioner.buildPattern() should replace dots at specific positions.",
+				"ClausePartitioner.buildPattern() should not replace characters.",
 				"..axy", partitioner.buildPattern(pattern, positions, 'a'));
 	}
 
@@ -58,7 +58,7 @@ public class TestClausePartitioner {
 		Set<Character> chars = new HashSet<>(Arrays.asList(new Character[] {
 				'a', 'b' }));
 		Clause newClause = partitioner.createNewClause(pattern, positions,
-				words, chars, 0);
+				words, 0);
 		assertEquals(
 				"ClausePartitioner.createNewClause() should increment lost points on empty positions.",
 				1, newClause.getLostPoints());
@@ -74,7 +74,7 @@ public class TestClausePartitioner {
 		Set<Character> chars = new HashSet<>(Arrays.asList(new Character[] {
 				'a', 'b' }));
 		Clause newClause = partitioner.createNewClause(pattern, positions,
-				words, chars, 0);
+				words, 0);
 		assertEquals(
 				"ClausePartitioner.createNewClause() should increment lost points on empty positions.",
 				0, newClause.getLostPoints());

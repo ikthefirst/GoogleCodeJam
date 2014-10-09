@@ -19,8 +19,6 @@ public class TestClausePartitionerPartition {
 		words.add("babb");
 		words.add("aaba");
 		Clause clause = new Clause(pattern, words, 0);
-		clause.addCharacter('a');
-		clause.addCharacter('b');
 
 		ClausePartitioner partitioner = new ClausePartitioner();
 		Set<Clause> newClauses = partitioner.partition(clause, 'a');
@@ -39,8 +37,6 @@ public class TestClausePartitionerPartition {
 		words.add("babb");
 		words.add("aaba");
 		Clause clause = new Clause(pattern, words, 0);
-		clause.addCharacter('a');
-		clause.addCharacter('b');
 
 		ClausePartitioner partitioner = new ClausePartitioner();
 		Set<Clause> newClauses = partitioner.partition(clause, 'c');
@@ -48,28 +44,6 @@ public class TestClausePartitionerPartition {
 		assertEquals(
 				"Partition should not create new clause if the character is not container by the words in the clause.",
 				1, newClauses.size());
-	}
-
-	@Test
-	public void characterShouldBeRemovedFromClausesAfterPartition() {
-		String pattern = "....x";
-		Set<String> words = new HashSet<>();
-		words.add("abbax");
-		words.add("babax");
-		words.add("babbx");
-		words.add("aabax");
-		Clause clause = new Clause(pattern, words, 2);
-		clause.addCharacter('a');
-		clause.addCharacter('b');
-
-		ClausePartitioner partitioner = new ClausePartitioner();
-		Set<Clause> newClauses = partitioner.partition(clause, 'a');
-
-		for (Clause c : newClauses) {
-			assertFalse(
-					"Character 'a' should be removed from character set of all created clauses.",
-					c.getContainedCharacters().contains('a'));
-		}
 	}
 
 	@Test
@@ -87,9 +61,6 @@ public class TestClausePartitionerPartition {
 		clause.addWord("abca");
 		clause.addWord("acba");
 		clause.addWord("bbbb");
-		clause.addCharacter('a');
-		clause.addCharacter('b');
-		clause.addCharacter('c');
 
 		Set<Clause> newClauses = partitioner.partition(clause, 'a');
 		// System.out.println(newClauses);
@@ -114,9 +85,6 @@ public class TestClausePartitionerPartition {
 		clause.addWord("acca");
 		clause.addWord("abca");
 		clause.addWord("acba");
-		clause.addCharacter('a');
-		clause.addCharacter('b');
-		clause.addCharacter('c');
 
 		Set<Clause> newClauses = partitioner.partition(clause, 'c');
 
@@ -124,5 +92,22 @@ public class TestClausePartitionerPartition {
 			assertTrue("Size of words should be greater than zero in " + c, c
 					.getWords().size() > 0);
 		}
+	}
+
+	@Test
+	public void specificClausesHasToBeCreated() {
+		ClausePartitioner partitioner = new ClausePartitioner();
+
+		Clause clause = new Clause();
+		clause.setPattern(".a.a.a.");
+		clause.addWord("pajamas");
+		clause.addWord("caravan");
+
+		Set<Clause> newClauses = partitioner.partition(clause, 'c');
+		System.out.println(newClauses);
+
+		assertEquals(
+				"Specific clauses has to be created, clause size should be 2.",
+				2, newClauses.size());
 	}
 }

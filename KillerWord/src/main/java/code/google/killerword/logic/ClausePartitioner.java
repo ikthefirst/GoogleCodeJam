@@ -27,12 +27,10 @@ public class ClausePartitioner {
 				clause.getWords(), pattern, ch);
 
 		// generate new clauses based on partitions map
-		Set<Character> characterSet = clause.getContainedCharacters();
-		characterSet.remove(ch);
 		for (Entry<Set<Integer>, Set<String>> entry : partitionsMap.entrySet()) {
 			String newPattern = buildPattern(pattern, entry.getKey(), ch);
 			Clause newClause = createNewClause(newPattern, entry.getKey(),
-					entry.getValue(), characterSet, clause.getLostPoints());
+					entry.getValue(), clause.getLostPoints());
 			nextClauseSet.add(newClause);
 		}
 
@@ -40,9 +38,8 @@ public class ClausePartitioner {
 	}
 
 	public Clause createNewClause(String pattern, Set<Integer> positions,
-			Set<String> words, Set<Character> characters, int lostPoints) {
+			Set<String> words, int lostPoints) {
 		Clause newClause = new Clause();
-		newClause.setContainedCharacters(characters);
 		newClause.setPattern(pattern);
 		newClause.setWords(words);
 
