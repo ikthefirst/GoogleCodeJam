@@ -35,6 +35,7 @@ public class Parser extends AbstractParser<InputData> {
 					line = br.readLine();
 					data.addTrial(line);
 				}
+				inputData.add(data);
 			}
 		}
 	}

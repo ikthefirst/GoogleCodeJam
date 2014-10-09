@@ -2,9 +2,11 @@ package code.google.killerword.logic;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -42,7 +44,7 @@ public class TestClauseCalculator {
 
 	@Test
 	public void buildWordsLengthMapShouldReturnSpecifiedMap() {
-		Set<String> words = new HashSet<>();
+		List<String> words = new ArrayList<>();
 		words.add("abc");
 		words.add("abcd");
 		words.add("befa");

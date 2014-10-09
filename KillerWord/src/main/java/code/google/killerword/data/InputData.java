@@ -7,24 +7,24 @@ import java.util.Set;
 
 public class InputData {
 
-	private Set<String> dictionary = new HashSet<String>();
+	private List<String> dictionary = new ArrayList<String>();
 	private List<String> trials = new ArrayList<String>();
 
 	public InputData() {
 		super();
 	}
 
-	public InputData(Set<String> dictionary, List<String> trials) {
+	public InputData(List<String> dictionary, List<String> trials) {
 		super();
 		this.dictionary = dictionary;
 		this.trials = trials;
 	}
 
-	public Set<String> getDictionary() {
+	public List<String> getDictionary() {
 		return dictionary;
 	}
 
-	public void setDictionary(Set<String> dictionary) {
+	public void setDictionary(List<String> dictionary) {
 		this.dictionary = dictionary;
 	}
 

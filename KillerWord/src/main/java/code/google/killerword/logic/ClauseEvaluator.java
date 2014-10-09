@@ -2,6 +2,7 @@ package code.google.killerword.logic;
 
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -45,6 +46,18 @@ public class ClauseEvaluator {
 		}
 
 		return words;
+	}
+
+	public String getFirstWord(List<String> words, Set<String> wordSet) {
+		if (wordSet.size() > 0) {
+			for (String word : words) {
+				if (wordSet.contains(word)) {
+					return word;
+				}
+			}
+		}
+		return wordSet.iterator().next();
+
 	}
 
 }
