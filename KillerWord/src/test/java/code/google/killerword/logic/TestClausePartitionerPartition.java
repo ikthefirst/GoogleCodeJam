@@ -4,11 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
 
+import static org.junit.Assert.*;
 import code.google.killerword.data.Clause;
 
-public class TestClausePartitionerWithoutPosition {
+public class TestClausePartitionerPartition {
 
 	@Test
 	public void specificNumberOfPartitionsShouldBeCreatedIfWordsContainGivenCharacter() {
@@ -72,4 +72,55 @@ public class TestClausePartitionerWithoutPosition {
 		}
 	}
 
+	@Test
+	public void sizeOfWordsInNewClausesShouldBeAtLeastOne() {
+		ClausePartitioner partitioner = new ClausePartitioner();
+
+		Clause clause = new Clause();
+		clause.setPattern("....");
+		clause.addWord("abba");
+		clause.addWord("baba");
+		clause.addWord("bbab");
+		clause.addWord("aaab");
+		clause.addWord("aaac");
+		clause.addWord("acca");
+		clause.addWord("abca");
+		clause.addWord("acba");
+		clause.addCharacter('a');
+		clause.addCharacter('b');
+		clause.addCharacter('c');
+
+		Set<Clause> newClauses = partitioner.partition(clause, 'a');
+
+		for (Clause c : newClauses) {
+			assertTrue("Size of words should be greater than zero in " + c, c
+					.getWords().size() > 0);
+		}
+	}
+
+	@Test
+	public void lostWordsShouldIncrementInClauseWhichNotContainCharacter() {
+		ClausePartitioner partitioner = new ClausePartitioner();
+
+		Clause clause = new Clause();
+		clause.setPattern("....");
+		clause.addWord("abba");
+		clause.addWord("baba");
+		clause.addWord("bbab");
+		clause.addWord("aaab");
+		clause.addWord("aaac");
+		clause.addWord("acca");
+		clause.addWord("abca");
+		clause.addWord("acba");
+		clause.addCharacter('a');
+		clause.addCharacter('b');
+		clause.addCharacter('c');
+
+		Set<Clause> newClauses = partitioner.partition(clause, 'c');
+
+		for (Clause c : newClauses) {
+			assertTrue("Size of words should be greater than zero in " + c, c
+					.getWords().size() > 0);
+		}
+	}
 }

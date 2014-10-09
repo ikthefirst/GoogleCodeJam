@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 @RunWith(Parameterized.class)
-public class TestPositionSetForWord {
+public class TestClausePartitionerCalculatePositionSet {
 
 	private String word;
 	private String pattern;
@@ -69,7 +69,7 @@ public class TestPositionSetForWord {
 						{ "abba", "....", 'x', new HashSet<Integer>() }, });
 	}
 
-	public TestPositionSetForWord(String word, String pattern, char ch,
+	public TestClausePartitionerCalculatePositionSet(String word, String pattern, char ch,
 			Set<Integer> expected) {
 		this.word = word;
 		this.pattern = pattern;

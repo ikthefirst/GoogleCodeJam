@@ -10,7 +10,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
-public class TestPartitionsMapBuilding {
+public class TestClausePartitionerMapBuilder {
 
 	@Test
 	public void fullPartitionMapShouldBeReturnedOnEmtpyPattern() {
