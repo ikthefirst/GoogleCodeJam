@@ -8,7 +8,17 @@ import java.util.Set;
 public class InputData {
 
 	private Set<String> dictionary = new HashSet<String>();
-	private List<String> trySequences = new ArrayList<String>();
+	private List<String> trials = new ArrayList<String>();
+
+	public InputData() {
+		super();
+	}
+
+	public InputData(Set<String> dictionary, List<String> trials) {
+		super();
+		this.dictionary = dictionary;
+		this.trials = trials;
+	}
 
 	public Set<String> getDictionary() {
 		return dictionary;
@@ -18,20 +28,20 @@ public class InputData {
 		this.dictionary = dictionary;
 	}
 
-	public List<String> getTrySequences() {
-		return trySequences;
+	public List<String> getTrials() {
+		return trials;
 	}
 
-	public void setTrySequences(List<String> trySequences) {
-		this.trySequences = trySequences;
+	public void setTrials(List<String> trials) {
+		this.trials = trials;
 	}
 
 	public void addWord(String word) {
 		dictionary.add(word);
 	}
 
-	public void addTrySequence(String trySequence) {
-		trySequences.add(trySequence);
+	public void addTrial(String trial) {
+		trials.add(trial);
 	}
 
 }

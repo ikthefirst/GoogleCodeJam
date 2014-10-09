@@ -10,8 +10,7 @@ public class Application extends AbstractApplication<InputData> {
 
 	@Override
 	public AbstractParser<InputData> createParser() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Parser();
 	}
 
 	@Override

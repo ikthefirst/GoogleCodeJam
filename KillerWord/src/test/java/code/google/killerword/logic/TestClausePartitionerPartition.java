@@ -86,11 +86,13 @@ public class TestClausePartitionerPartition {
 		clause.addWord("acca");
 		clause.addWord("abca");
 		clause.addWord("acba");
+		clause.addWord("bbbb");
 		clause.addCharacter('a');
 		clause.addCharacter('b');
 		clause.addCharacter('c');
 
 		Set<Clause> newClauses = partitioner.partition(clause, 'a');
+		// System.out.println(newClauses);
 
 		for (Clause c : newClauses) {
 			assertTrue("Size of words should be greater than zero in " + c, c
