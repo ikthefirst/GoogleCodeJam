@@ -11,12 +11,54 @@ import java.util.Set;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import code.google.killerword.data.Clause;
 import code.google.killerword.data.InputData;
 
 public class TestClauseEvaluator {
 
 	@Test
-	public void determineKillerWords() {
-		fail("TODO: test determineKillerWords()");
+	public void determineKillerWords1() {
+		ClauseEvaluator evaluator = new ClauseEvaluator();
+
+		Set<String> words = new HashSet<String>(Arrays.asList(new String[] {
+				"abbab", "abcac", "abdad" }));
+		String trial = "abcd";
+		Set<Character> chars = new HashSet<>(Arrays.asList(new Character[] {
+				'a', 'b', 'c', 'd' }));
+		Clause clause = new Clause(chars, ".....", words, 0);
+		Map<Integer, Clause> clauses = new HashMap<Integer, Clause>();
+		clauses.put(5, clause);
+
+		Set<String> killerWords = evaluator
+				.determineKillerWords(trial, clauses);
+		Set<String> expected = new HashSet<String>();
+		expected.add("abdad");
+
+		assertEquals("determineKillerWords(" + clause + ")", expected,
+				killerWords);
+
+	}
+
+	@Test
+	public void determineKillerWords2() {
+		ClauseEvaluator evaluator = new ClauseEvaluator();
+
+		Set<String> words = new HashSet<String>(Arrays.asList(new String[] {
+				"pajamas", "caravan" }));
+		String trial = "abcdefghijklmnopqrstuvwxyz";
+		Set<Character> chars = new HashSet<>(Arrays.asList(new Character[] {
+				'p', 'a', 'j', 'm', 's', 'c', 'r', 'v', 'n' }));
+		Clause clause = new Clause(chars, ".......", words, 0);
+		Map<Integer, Clause> clauses = new HashMap<Integer, Clause>();
+		clauses.put(5, clause);
+
+		Set<String> killerWords = evaluator
+				.determineKillerWords(trial, clauses);
+		Set<String> expected = new HashSet<String>();
+		expected.add("pajamas");
+
+		assertEquals("determineKillerWords(" + clause + ")", expected,
+				killerWords);
+
 	}
 }
