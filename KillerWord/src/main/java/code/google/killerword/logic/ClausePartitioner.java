@@ -39,7 +39,7 @@ public class ClausePartitioner {
 		return nextClauseSet;
 	}
 
-	public Clause createNewClause(String pattern, Set<Integer> positionSet,
+	public Clause createNewClause(String pattern, Set<Integer> positions,
 			Set<String> words, Set<Character> characters, int lostPoints) {
 		Clause newClause = new Clause();
 		newClause.setContainedCharacters(characters);
@@ -47,7 +47,7 @@ public class ClausePartitioner {
 		newClause.setWords(words);
 
 		// if the words do not contain the character, increment lost points
-		if (positionSet.isEmpty()) {
+		if (positions.isEmpty()) {
 			newClause.setLostPoints(lostPoints + 1);
 		} else {
 			newClause.setLostPoints(lostPoints);
@@ -58,7 +58,9 @@ public class ClausePartitioner {
 	public String buildPattern(String pattern, Set<Integer> positions, char ch) {
 		char[] patternChars = pattern.toCharArray();
 		for (int pos : positions) {
-			patternChars[pos] = ch;
+			if (patternChars[pos] == '.') {
+				patternChars[pos] = ch;
+			}
 		}
 		return new String(patternChars);
 	}
