@@ -11,7 +11,7 @@ import code.google.killerword.data.Clause;
 public class TestClausePartitionerWithoutPosition {
 
 	@Test
-	public void partitionedSizeBeGreaterThanOneIfTheCharacterIsContainedByTheClause() {
+	public void specificNumberOfPartitionsShouldBeCreatedIfWordsContainGivenCharacter() {
 		String pattern = "....";
 		Set<String> words = new HashSet<>();
 		words.add("abba");
@@ -31,7 +31,7 @@ public class TestClausePartitionerWithoutPosition {
 	}
 
 	@Test
-	public void partitionedSizeShouldBeOneIfTheCharacterIsNotContainedByTheClause() {
+	public void noNewPartitionShouldBeCreatedIfWordsNotContainGivenCharacter() {
 		String pattern = "....";
 		Set<String> words = new HashSet<>();
 		words.add("abba");
@@ -51,47 +51,6 @@ public class TestClausePartitionerWithoutPosition {
 	}
 
 	@Test
-	public void lostPointsInClauseShouldIncrementByOneIfCanNotBePartitioned() {
-		String pattern = "....x";
-		Set<String> words = new HashSet<>();
-		words.add("ybbax");
-		words.add("babax");
-		words.add("babbx");
-		words.add("aabax");
-		Clause clause = new Clause(pattern, words, 10);
-		clause.addCharacter('a');
-		clause.addCharacter('b');
-		clause.addCharacter('y');
-
-		ClausePartitioner partitioner = new ClausePartitioner();
-		Set<Clause> newClauses = partitioner.partition(clause, 'y');
-
-		assertEquals(
-				"Lost points in clause should increment by one if contains given character and can not be partitioned.",
-				11, clause.getLostPoints());
-	}
-
-	@Test
-	public void lostPointsInClauseShouldNotIncrementNotContainsGivenCharacter() {
-		String pattern = "....x";
-		Set<String> words = new HashSet<>();
-		words.add("abbax");
-		words.add("babax");
-		words.add("babbx");
-		words.add("aabax");
-		Clause clause = new Clause(pattern, words, 45);
-		clause.addCharacter('a');
-		clause.addCharacter('b');
-
-		ClausePartitioner partitioner = new ClausePartitioner();
-		Set<Clause> newClauses = partitioner.partition(clause, 'y');
-
-		assertEquals(
-				"Lost points in clause not should increment if not contains given character.",
-				45, clause.getLostPoints());
-	}
-
-	@Test
 	public void characterShouldBeRemovedFromClausesAfterPartition() {
 		String pattern = "....x";
 		Set<String> words = new HashSet<>();
@@ -107,7 +66,9 @@ public class TestClausePartitionerWithoutPosition {
 		Set<Clause> newClauses = partitioner.partition(clause, 'a');
 
 		for (Clause c : newClauses) {
-			assertFalse("", c.getContainedCharacters().contains('a'));
+			assertFalse(
+					"Character 'a' should be removed from character set of all created clauses.",
+					c.getContainedCharacters().contains('a'));
 		}
 	}
 

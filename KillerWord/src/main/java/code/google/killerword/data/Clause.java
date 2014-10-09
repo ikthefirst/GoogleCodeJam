@@ -12,10 +12,12 @@ public class Clause {
 
 	public Clause() {
 		super();
+		containedCharacters = new HashSet<>();
+		words = new HashSet<>();
 	}
 
 	public Clause(String pattern, Set<String> words, int lostPoints) {
-		super();
+		this();
 		this.pattern = pattern;
 		this.words = words;
 		this.lostPoints = lostPoints;
@@ -23,7 +25,7 @@ public class Clause {
 
 	public Clause(Set<Character> containedCharacters, String pattern,
 			Set<String> words, int lostPoints) {
-		super();
+		this();
 		this.containedCharacters = containedCharacters;
 		this.pattern = pattern;
 		this.words = words;

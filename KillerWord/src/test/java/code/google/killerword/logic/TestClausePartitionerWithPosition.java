@@ -13,12 +13,14 @@ public class TestClausePartitionerWithPosition {
 
 	@Test
 	public void partitionShouldNotModifyPatternInPassedClause() {
-		String pattern = "...";
-		Set<String> words = new HashSet<>();
-		words.add("aaa");
-		words.add("baa");
-		words.add("caa");
-		Clause clause = new Clause(pattern, words, 0);
+		Clause clause = new Clause();
+		clause.setPattern("...");
+		clause.addWord("aaa");
+		clause.addWord("baa");
+		clause.addWord("caa");
+		clause.addCharacter('a');
+		clause.addCharacter('b');
+		clause.addCharacter('c');
 
 		ClausePartitioner partitioner = new ClausePartitioner();
 		partitioner.partition(clause, 'a', 0);
@@ -30,12 +32,14 @@ public class TestClausePartitionerWithPosition {
 
 	@Test
 	public void partitionShouldExtractMatchingWordsFromPassedClause() {
-		String pattern = "...";
-		Set<String> words = new HashSet<>();
-		words.add("aaa");
-		words.add("baa");
-		words.add("caa");
-		Clause clause = new Clause(pattern, words, 0);
+		Clause clause = new Clause();
+		clause.setPattern("...");
+		clause.addWord("aaa");
+		clause.addWord("baa");
+		clause.addWord("caa");
+		clause.addCharacter('a');
+		clause.addCharacter('b');
+		clause.addCharacter('c');
 
 		Set<String> expectedWords = new HashSet<>();
 		expectedWords.add("baa");
@@ -51,12 +55,14 @@ public class TestClausePartitionerWithPosition {
 
 	@Test
 	public void partitionShouldNotExtractNotMatchingWordsFromPassedClause() {
-		String pattern = "...";
-		Set<String> words = new HashSet<>();
-		words.add("aaa");
-		words.add("baa");
-		words.add("caa");
-		Clause clause = new Clause(pattern, words, 0);
+		Clause clause = new Clause();
+		clause.setPattern("...");
+		clause.addWord("aaa");
+		clause.addWord("baa");
+		clause.addWord("caa");
+		clause.addCharacter('a');
+		clause.addCharacter('b');
+		clause.addCharacter('c');
 
 		Set<String> expectedWords = new HashSet<>();
 		expectedWords.add("aaa");
@@ -73,12 +79,14 @@ public class TestClausePartitionerWithPosition {
 
 	@Test
 	public void partitionShouldReturnNewClauseWithAppropriatePattern() {
-		String pattern = "...";
-		Set<String> words = new HashSet<>();
-		words.add("aaa");
-		words.add("baa");
-		words.add("caa");
-		Clause clause = new Clause(pattern, words, 0);
+		Clause clause = new Clause();
+		clause.setPattern("...");
+		clause.addWord("aaa");
+		clause.addWord("baa");
+		clause.addWord("caa");
+		clause.addCharacter('a');
+		clause.addCharacter('b');
+		clause.addCharacter('c');
 
 		ClausePartitioner partitioner = new ClausePartitioner();
 		Clause newClause = partitioner.partition(clause, 'a', 0);
@@ -90,12 +98,14 @@ public class TestClausePartitionerWithPosition {
 
 	@Test
 	public void partitionShouldReturnNullIfNoWordsContainTheCharAtPosition() {
-		String pattern = "...";
-		Set<String> words = new HashSet<>();
-		words.add("aaa");
-		words.add("baa");
-		words.add("caa");
-		Clause clause = new Clause(pattern, words, 0);
+		Clause clause = new Clause();
+		clause.setPattern("...");
+		clause.addWord("aaa");
+		clause.addWord("baa");
+		clause.addWord("caa");
+		clause.addCharacter('a');
+		clause.addCharacter('b');
+		clause.addCharacter('c');
 
 		ClausePartitioner partitioner = new ClausePartitioner();
 		Clause newClause = partitioner.partition(clause, 'x', 0);
@@ -107,12 +117,15 @@ public class TestClausePartitionerWithPosition {
 
 	@Test
 	public void partitionShouldNotModifyLostPointsInPassedClause() {
-		String pattern = "...";
-		Set<String> words = new HashSet<>();
-		words.add("aaa");
-		words.add("baa");
-		words.add("caa");
-		Clause clause = new Clause(pattern, words, 23);
+		Clause clause = new Clause();
+		clause.setPattern("...");
+		clause.addWord("aaa");
+		clause.addWord("baa");
+		clause.addWord("caa");
+		clause.addCharacter('a');
+		clause.addCharacter('b');
+		clause.addCharacter('c');
+		clause.setLostPoints(23);
 
 		ClausePartitioner partitioner = new ClausePartitioner();
 		partitioner.partition(clause, 'a', 1);
@@ -124,12 +137,15 @@ public class TestClausePartitionerWithPosition {
 
 	@Test
 	public void partitionShouldNotModifyLostPointsInNewClause() {
-		String pattern = "...";
-		Set<String> words = new HashSet<>();
-		words.add("aaa");
-		words.add("baa");
-		words.add("caa");
-		Clause clause = new Clause(pattern, words, 23);
+		Clause clause = new Clause();
+		clause.setPattern("...");
+		clause.addWord("aaa");
+		clause.addWord("baa");
+		clause.addWord("caa");
+		clause.addCharacter('a');
+		clause.addCharacter('b');
+		clause.addCharacter('c');
+		clause.setLostPoints(23);
 
 		ClausePartitioner partitioner = new ClausePartitioner();
 		Clause newClause = partitioner.partition(clause, 'a', 1);
@@ -140,36 +156,82 @@ public class TestClausePartitionerWithPosition {
 	}
 
 	@Test
-	public void partitionShouldNotModifyWordsIfPositionIsOutOFLimit() {
-		String pattern = "...";
-		Set<String> words = new HashSet<>();
-		words.add("aaa");
-		words.add("baa");
-		words.add("caa");
-		Clause clause = new Clause(pattern, words, 23);
+	public void partitionShouldNotModifyWordsIfPositionIsGreaterThanWordsLength() {
+		Clause clause = new Clause();
+		clause.setPattern("...");
+		clause.addWord("aaa");
+		clause.addWord("baa");
+		clause.addWord("caa");
+		clause.addCharacter('a');
+		clause.addCharacter('b');
+		clause.addCharacter('c');
+		clause.setLostPoints(23);
 
 		ClausePartitioner partitioner = new ClausePartitioner();
 		partitioner.partition(clause, 'a', 3);
 
 		assertEquals(
-				"partition() should not modify words in clause if position is out of pattern limit.",
+				"partition() should not modify words in clause if position is greater than words length.",
 				clause.getWords().size(), 3);
 	}
 
 	@Test
-	public void partitionShouldNotModifyPatternIfPositionIsOutOfLimit() {
-		String pattern = "...";
-		Set<String> words = new HashSet<>();
-		words.add("aaa");
-		words.add("baa");
-		words.add("caa");
-		Clause clause = new Clause(pattern, words, 23);
+	public void partitionShouldNotModifyWordsIfPositionIsNegative() {
+		Clause clause = new Clause();
+		clause.setPattern("...");
+		clause.addWord("aaa");
+		clause.addWord("baa");
+		clause.addWord("caa");
+		clause.addCharacter('a');
+		clause.addCharacter('b');
+		clause.addCharacter('c');
+		clause.setLostPoints(23);
+
+		ClausePartitioner partitioner = new ClausePartitioner();
+		partitioner.partition(clause, 'a', -1);
+
+		assertEquals(
+				"partition() should not modify words in clause if position is negative.",
+				clause.getWords().size(), 3);
+	}
+
+	@Test
+	public void partitionShouldNotModifyPatternIfPositionIsGreaterThanWordsLength() {
+		Clause clause = new Clause();
+		clause.setPattern("...");
+		clause.addWord("aaa");
+		clause.addWord("baa");
+		clause.addWord("caa");
+		clause.addCharacter('a');
+		clause.addCharacter('b');
+		clause.addCharacter('c');
+		clause.setLostPoints(23);
 
 		ClausePartitioner partitioner = new ClausePartitioner();
 		partitioner.partition(clause, 'a', 3);
 
 		assertEquals(
-				"partition() should not modify pattern in clause if position is out of pattern limit.",
+				"partition() should not modify pattern in clause if position is greater than words length.",
+				clause.getPattern(), "...");
+	}
+
+	@Test
+	public void partitionShouldNotModifyPatternIfPositionIsNegative() {
+		Clause clause = new Clause();
+		clause.setPattern("...");
+		clause.addWord("aaa");
+		clause.addWord("baa");
+		clause.addWord("caa");
+		clause.addCharacter('a');
+		clause.addCharacter('b');
+		clause.addCharacter('c');
+		clause.setLostPoints(23);
+
+		ClausePartitioner partitioner = new ClausePartitioner();
+		partitioner.partition(clause, 'a', -1);
+
+		assertEquals(
+				"partition() should not modify pattern in clause if position is negative.",
 				clause.getPattern(), "...");
 	}
 
