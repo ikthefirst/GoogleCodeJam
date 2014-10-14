@@ -167,6 +167,7 @@ public class CardPlay {
 						return memoized;
 					}
 				} else {
+					cache.remove(new MemoKey(state, savedScore));
 					memoizedScores.put(state, score);
 				}
 			} else {
