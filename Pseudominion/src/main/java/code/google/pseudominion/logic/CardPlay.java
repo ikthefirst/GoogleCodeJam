@@ -157,9 +157,20 @@ public class CardPlay {
 
 		// if memoize is enabled, check if current state is already calculated
 		if (memoize) {
-			Integer memoized = cache.get(new MemoKey(state, score));
-			if (memoized != null) {
-				return memoized;
+			Integer savedScore = memoizedScores.get(state);
+			if (savedScore != null) {
+				if (score < savedScore) {
+					return 0;
+				} else if (score == savedScore) {
+					Integer memoized = cache.get(new MemoKey(state, score));
+					if (memoized != null) {
+						return memoized;
+					}
+				} else {
+					memoizedScores.put(state, score);
+				}
+			} else {
+				memoizedScores.put(state, score);
 			}
 		}
 
